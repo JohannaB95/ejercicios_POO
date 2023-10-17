@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+function PlatoRestaurante(plato, cantidad, precio){
+                this.plato = plato;
+                this.cantidad = cantidad;
+                this.precio = precio;
+            }
+
+            let pedido1 = new PlatoRestaurante('Hamburguesa', 2, 15000);
+
+            console.log({pedido1});
+
+            let pedido2 = new PlatoRestaurante('Perro caliente', 1, 10500);
+
+            console.log({pedido2});
+
+            let pedido3 = new PlatoRestaurante('Salchipapa', 4, 16500);
+
+            console.log({pedido3});
+
+            PlatoRestaurante.prototype.pedidoRestaurante = function( ){
+                console.log(`El pedido es el siguiente: \n` + `Plato: ${this.plato}\n` + `Cantidad: ${this.cantidad}\n` + `Precio: ${this.precio} cada una`)
+            }
+
+            PlatoRestaurante.prototype.valorPedido = function( ){
+                let total = this.precio * this.cantidad;
+                console.log(`El valor del pedido es de $${total}`)
+            }
+
+            PlatoRestaurante.prototype.descuentoPedido = function( ){
+                
+                if (this.cantidad > 2 || this.precio >= 50000) {
+                    let descuento = 10;
+                    let total1 = this.precio * this.cantidad;
+                    let descuentoAplicado = (total1 * descuento) / 100;
+                    let totalDescuento = total1 - descuentoAplicado;
+                        console.log(`El valor del pedido con descuento es de $ ${totalDescuento}`);
+                    } else {
+                        console.log(`No se aplica ningún descuento`);
+                }
+            };
+            
+            console.log('Pedido #1')
+            pedido1.pedidoRestaurante( );
+            pedido1.valorPedido( );
+            pedido1.descuentoPedido( );
+
+            console.log('Pedido #2')
+            pedido2.pedidoRestaurante( );
+            pedido2.valorPedido( );
+            pedido2.descuentoPedido( );
+
+            console.log('Pedido #3');
+            pedido3.pedidoRestaurante( );
+            pedido3.valorPedido( );
+            pedido3.descuentoPedido( );
+
+            function RestauranteDomicilio(plato, cantidad, precio, nombreRestaurante, tiempoEntrega, valorDomicilio){
+                this.super = PlatoRestaurante;
+                this.super(plato, cantidad, precio);
+                this.nombreRestaurante = nombreRestaurante;
+                this.tiempoEntrega = tiempoEntrega;
+                this.valorDomicilio = valorDomicilio;
+            }
+
+            RestauranteDomicilio.prototype = new PlatoRestaurante( );
+            RestauranteDomicilio.prototype.constructor = PlatoRestaurante;
+
+            let pedido4 = new RestauranteDomicilio('Mazorcada', 2, 18000, 'FlashBurger', 30, 3000);
+
+            console.log({pedido4});
+
+            RestauranteDomicilio.prototype.informacionRestaurante = function( ){
+                console.log(`El restaurante de comidas rápidas ${this.nombreRestaurante} cuenta con gran variedad de platos como ${this.plato}` 
+                + ` comidas deliciosas y a buenos precios,` + ` contamos con servicio a domicilio de ${this.tiempoEntrega} minutos aprox.`
+                + ` Este servicio cuesta $${this.valorDomicilio} pesos.`);
+            }
+
+            RestauranteDomicilio.prototype.valorPedidoDomicilio = function( ){
+               let domicilio = this.precio * this.cantidad + this.valorDomicilio;
+               console.log(`El valor del pedido incluido el domicilio es de $${domicilio} pesos.`);
+            };
+
+            console.log('Pedido #4');
+            pedido4.informacionRestaurante( );
+            pedido4.valorPedidoDomicilio( );
+
+    </script>
+</body>
+</html>

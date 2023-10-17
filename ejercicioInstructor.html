@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+function Instructor(nombre, linea, jornada){
+                this.nombre = nombre;
+                this.linea = linea;
+                this.jornada = jornada;
+            }
+
+            let instructor1 = new Instructor('Mariana Lopez', 'Software', 'Mañana');
+
+            console.log({instructor1});
+
+            let instructor2 = new Instructor('Santiago Cardenas', 'Hardware','Tarde');
+
+            console.log({instructor2});
+
+            let instructor3 = new Instructor('Lina Sanchez', 'Otra línea', 'Noche');
+
+            console.log({instructor3});
+
+            Instructor.prototype.informacionInstructor = function( ){
+                console.log(`La información del instructor es la siguiente:\n` + `Nombre: ${this.nombre}\n` +
+                `Línea de formación: ${this.linea}\n` + `Jornada asignada: ${this.jornada}`);
+            }
+
+            Instructor.prototype.programaFormacion = function( ){
+                if ( this.linea === 'Software') {
+                    console.log(`El instructor es de la línea de ${this.linea}, entonces el programa es Análisis y desarrollo de software`);
+                } else if (this.linea === 'Hardware') { 
+                    console.log(`El instructor es de la línea de ${this.linea},entonces el programa es Administración de redes`);
+                } else if (this.linea === 'Otra línea') { 
+                console.log(`El instructor es de ${this.linea}, no se tiene registro calificado para esas líneas tecnológicas`);
+                }
+            }
+            
+            console.log('Instructor 1');
+            instructor1.informacionInstructor( );
+            instructor1.programaFormacion( );
+
+            console.log('Instructor 2');
+            instructor2.informacionInstructor( );
+            instructor2.programaFormacion( );
+
+            console.log('Instructor 3');
+            instructor3.informacionInstructor( );
+            instructor3.programaFormacion( );
+
+            function InstructorPlanta(nombre, linea, jornada, fechaVinculacion){
+                this.super = Instructor;
+                this.super(nombre,linea,jornada);
+                this.fechaVinculacion = fechaVinculacion;
+            }
+
+            InstructorPlanta.prototype = new Instructor( );
+            InstructorPlanta.prototype.constructor =Instructor;
+
+            let instructor4 = new InstructorPlanta('Sebastian Mejia', 'Software', 'Mañana', '5/12/2021');
+
+            InstructorPlanta.prototype.informacionInstructor = function( ){
+                console.log(`La información del instructor es la siguiente:\n` + `Nombre: ${this.nombre}\n` +
+                `Línea de formación: ${this.linea}\n` + `Jornada asignada: ${this.jornada}\n` + `Fecha de vinculación: ${this.fechaVinculacion}`);
+            }
+
+            InstructorPlanta.prototype.tiempoVinculacion = function( ){
+                let fecha1 = new Date('5/12/2021');
+                    let fecha2 = new Date( );
+                    let diferenciaTiempo = (fecha2 - fecha1);
+                    let diferenciaMeses = Math.floor(diferenciaTiempo / (1000 * 60 * 60 * 24 * 30));
+
+                        console.log(`El tiempo total que lleva vinculado el instructor es de: ${diferenciaMeses} meses`)
+                }
+
+            console.log('Instructor 4');
+
+            instructor4.informacionInstructor( );
+            instructor4.tiempoVinculacion( );
+
+    </script>
+    
+</body>
+</html>
