@@ -1,99 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ejercicio Restaurante</title>
 </head>
+
 <body>
-    
+
     <script>
 
-function PlatoRestaurante(plato, cantidad, precio){
-                this.plato = plato;
-                this.cantidad = cantidad;
-                this.precio = precio;
+        //Se define una función constructora llamada PlatoRestaurante que toma tres parámetros plato, cantidad, precio
+        function PlatoRestaurante(plato, cantidad, precio) {
+            //Los parámetros se asignan como propiedades al objeto creado
+            this.plato = plato;
+            this.cantidad = cantidad;
+            this.precio = precio;
+        }
+
+        //Se crea una nueva instancia de la clase PlatoRestaurante con diferentes valores
+        let pedido1 = new PlatoRestaurante('Hamburguesa', 2, 15000);
+
+        //Se imprime en la consola un objeto que contiene la información actual de pedido1
+        console.log({ pedido1 });
+
+        //Se crea una nueva instancia de la clase PlatoRestaurante con diferentes valores
+        let pedido2 = new PlatoRestaurante('Perro caliente', 1, 10500);
+
+        //Se imprime en la consola un objeto que contiene la información actual de pedido2
+        console.log({ pedido2 });
+
+        //Se crea una nueva instancia de la clase PlatoRestaurante con diferentes valores
+        let pedido3 = new PlatoRestaurante('Salchipapa', 4, 16500);
+
+        //Se imprime en la consola un objeto que contiene la información actual de pedido3
+        console.log({ pedido3 });
+
+        //Se crea un prototipo de la clase PlatoRestaurante llamado pedidoRestaurante que contiene una función sin parámetros
+        PlatoRestaurante.prototype.pedidoRestaurante = function () {
+            //Se imprime en la consola la información del pedido
+            console.log(`El pedido es el siguiente: \n` + `Plato: ${this.plato}\n` + `Cantidad: ${this.cantidad}\n` + `Precio: ${this.precio} cada una`)
+        }
+
+        //Se crea un prototipo de la clase PlatoRestaurante llamado valorPedido que contiene una función sin parámetros
+        PlatoRestaurante.prototype.valorPedido = function () {
+            //Se declara una variable llamada total que almacena el total de la multiplicación entre precio y cantidad
+            let total = this.precio * this.cantidad;
+            //Se imprime en la consola un mensaje indicando el valor total del pedido
+            console.log(`El valor del pedido es de $${total}`)
+        }
+
+        //Se crea un prototipo de la clase PlatoRestaurante llamado descuentoPedido que contiene una función sin parámetros
+        PlatoRestaurante.prototype.descuentoPedido = function () {
+
+            //Si la cantidad es mayor a 2 y precio es mayor o igual a 50000
+            if (this.cantidad > 2 || this.precio >= 50000) {
+                //Se declara una variable llamada descuento que se inicializa en 10
+                let descuento = 10;
+                //Se declara una variable llamada total1 que almacena el valor de la multiplicación entre precio y cantidad
+                let total1 = this.precio * this.cantidad;
+                //Se declara una variable llamada descuentoAplicado que almacena el valor del descuento que se realizara
+                let descuentoAplicado = (total1 * descuento) / 100;
+                //Se declara una variable llamada totalDescuento que almacena el valor del precio final del pedido
+                let totalDescuento = total1 - descuentoAplicado;
+                //Se imprime en la consola el valor del pedido aplicado el descuento
+                console.log(`El valor del pedido con descuento es de $ ${totalDescuento}`);
+            } else {
+                //Si no se cumple la condición no se realiza descuento y se imprime un mensaje en la consola
+                console.log(`No se aplica ningún descuento`);
             }
+        };
 
-            let pedido1 = new PlatoRestaurante('Hamburguesa', 2, 15000);
+        //Se imprime en la consola un mensaje
+        console.log('Pedido #1');
+        //Se llama a los métodos para pedido1
+        pedido1.pedidoRestaurante();
+        pedido1.valorPedido();
+        pedido1.descuentoPedido();
 
-            console.log({pedido1});
+        //Se imprime en la consola un mensaje
+        console.log('Pedido #2');
+        //Se llama a los métodos para pedido2
+        pedido2.pedidoRestaurante();
+        pedido2.valorPedido();
+        pedido2.descuentoPedido();
 
-            let pedido2 = new PlatoRestaurante('Perro caliente', 1, 10500);
+        //Se imprime en la consola un mensaje
+        console.log('Pedido #3');
+        //Se llama a los métodos para pedido3
+        pedido3.pedidoRestaurante();
+        pedido3.valorPedido();
+        pedido3.descuentoPedido();
 
-            console.log({pedido2});
+        /*Se define una nueva función constructora RestauranteDomicilio que hereda propiedades de la clase 
+        PlatoRestaurante usando this.super. Se agregan propiedades adicionales nombreRestaurante, 
+        tiempoEntrega, valorDomicilio*/
+        function RestauranteDomicilio(plato, cantidad, precio, nombreRestaurante, tiempoEntrega, valorDomicilio) {
+            this.super = PlatoRestaurante;
+            this.super(plato, cantidad, precio);
+            this.nombreRestaurante = nombreRestaurante;
+            this.tiempoEntrega = tiempoEntrega;
+            this.valorDomicilio = valorDomicilio;
+        }
 
-            let pedido3 = new PlatoRestaurante('Salchipapa', 4, 16500);
+        //Se establece el prototipo de la clase RestauranteDomicilio como una nueva instancia de la clase PlatoRestaurante
+        RestauranteDomicilio.prototype = new PlatoRestaurante();
+        //Se establece el constructor del prototipo de RestauranteDomicilio como la función constructora de PlatoRestaurante.
+        RestauranteDomicilio.prototype.constructor = PlatoRestaurante;
 
-            console.log({pedido3});
+        //Se crea una nueva instancia de la clase RestauranteDomicilio con diferentes valores
+        let pedido4 = new RestauranteDomicilio('Mazorcada', 2, 18000, 'FlashBurger', 30, 3000);
 
-            PlatoRestaurante.prototype.pedidoRestaurante = function( ){
-                console.log(`El pedido es el siguiente: \n` + `Plato: ${this.plato}\n` + `Cantidad: ${this.cantidad}\n` + `Precio: ${this.precio} cada una`)
-            }
+        //Se imprime en la consola un objeto que contiene la información actual de pedido4
+        console.log({ pedido4 });
 
-            PlatoRestaurante.prototype.valorPedido = function( ){
-                let total = this.precio * this.cantidad;
-                console.log(`El valor del pedido es de $${total}`)
-            }
-
-            PlatoRestaurante.prototype.descuentoPedido = function( ){
-                
-                if (this.cantidad > 2 || this.precio >= 50000) {
-                    let descuento = 10;
-                    let total1 = this.precio * this.cantidad;
-                    let descuentoAplicado = (total1 * descuento) / 100;
-                    let totalDescuento = total1 - descuentoAplicado;
-                        console.log(`El valor del pedido con descuento es de $ ${totalDescuento}`);
-                    } else {
-                        console.log(`No se aplica ningún descuento`);
-                }
-            };
-            
-            console.log('Pedido #1')
-            pedido1.pedidoRestaurante( );
-            pedido1.valorPedido( );
-            pedido1.descuentoPedido( );
-
-            console.log('Pedido #2')
-            pedido2.pedidoRestaurante( );
-            pedido2.valorPedido( );
-            pedido2.descuentoPedido( );
-
-            console.log('Pedido #3');
-            pedido3.pedidoRestaurante( );
-            pedido3.valorPedido( );
-            pedido3.descuentoPedido( );
-
-            function RestauranteDomicilio(plato, cantidad, precio, nombreRestaurante, tiempoEntrega, valorDomicilio){
-                this.super = PlatoRestaurante;
-                this.super(plato, cantidad, precio);
-                this.nombreRestaurante = nombreRestaurante;
-                this.tiempoEntrega = tiempoEntrega;
-                this.valorDomicilio = valorDomicilio;
-            }
-
-            RestauranteDomicilio.prototype = new PlatoRestaurante( );
-            RestauranteDomicilio.prototype.constructor = PlatoRestaurante;
-
-            let pedido4 = new RestauranteDomicilio('Mazorcada', 2, 18000, 'FlashBurger', 30, 3000);
-
-            console.log({pedido4});
-
-            RestauranteDomicilio.prototype.informacionRestaurante = function( ){
-                console.log(`El restaurante de comidas rápidas ${this.nombreRestaurante} cuenta con gran variedad de platos como ${this.plato}` 
+        //Se redefine el método informacionRestaurante en el prototipo de la clase RestauranteDomicilio.
+        RestauranteDomicilio.prototype.informacionRestaurante = function () {
+            //Se imprime en la consola información sobre el restaurante
+            console.log(`El restaurante de comidas rápidas ${this.nombreRestaurante} cuenta con gran variedad de platos como ${this.plato}`
                 + ` comidas deliciosas y a buenos precios,` + ` contamos con servicio a domicilio de ${this.tiempoEntrega} minutos aprox.`
                 + ` Este servicio cuesta $${this.valorDomicilio} pesos.`);
-            }
+        }
 
-            RestauranteDomicilio.prototype.valorPedidoDomicilio = function( ){
-               let domicilio = this.precio * this.cantidad + this.valorDomicilio;
-               console.log(`El valor del pedido incluido el domicilio es de $${domicilio} pesos.`);
-            };
+        //Se crea prototipo de la clase RestauranteDomicilio llamado valorPedidoDomicilio que contiene una función sin parámetros
+        RestauranteDomicilio.prototype.valorPedidoDomicilio = function () {
+            //Se declara una variable llamada domicilio que almacena el valor total del pedido más el domicilio
+            let domicilio = this.precio * this.cantidad + this.valorDomicilio;
+            //Se imprime en la consola un mensaje de cuanto cuesta el pedido incluido el domicilio
+            console.log(`El valor del pedido incluido el domicilio es de $${domicilio} pesos.`);
+        };
 
-            console.log('Pedido #4');
-            pedido4.informacionRestaurante( );
-            pedido4.valorPedidoDomicilio( );
+        //Se imprime en la consola un mensaje
+        console.log('Pedido #4');
+        //Se llama a los métodos para pedido4
+        pedido4.informacionRestaurante();
+        pedido4.valorPedidoDomicilio();
 
     </script>
 </body>
+
 </html>

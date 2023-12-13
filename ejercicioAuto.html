@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ejercicio Auto</title>
 </head>
+
 <body>
-    
+
     <script>
         /*
                 const aprendiz1 = {
@@ -136,96 +138,136 @@
                 aprendiz2.estudiar( );
                 aprendiz2.trabajar( ); */
 
-            function Automovil(marca, linea, modelo, cilindraje, precio){
-                this.marca = marca;
-                this.linea = linea;
-                this.modelo = modelo;
-                this.cilindraje = cilindraje;
-                this.precio = precio;
-            }
+        //Se define una función constructora llamada Automovil que toma cinco parámetros marca, linea, modelo, cilindraje, precio.
+        function Automovil(marca, linea, modelo, cilindraje, precio) {
+            //Los parámetros se asignan como propiedades al objeto creado
+            this.marca = marca;
+            this.linea = linea;
+            this.modelo = modelo;
+            this.cilindraje = cilindraje;
+            this.precio = precio;
+        }
 
-            let automovil1 = new Automovil('Ford', 'Deportivo', 2021, '4 cilindros', 98784000);
-            
-            console.log({automovil1});
+        //Se crea una nueva instancia de la clase Automovil con diferentes valores
+        let automovil1 = new Automovil('Ford', 'Deportivo', 2021, '4 cilindros', 98784000);
 
-            let automovil2 = new Automovil('Honda', 'Compacto', 2017, '4 cilindros', 95687000);
+        //Se imprime en la consola un objeto que contiene la información actual de automovil1
+        console.log({ automovil1 });
 
-            console.log({automovil2});
+        //Se crea una nueva instancia de la clase Automovil con diferentes valores
+        let automovil2 = new Automovil('Honda', 'Compacto', 2017, '4 cilindros', 95687000);
 
-            let automovil3 = new Automovil('Toyota', 'SUV Familiar', 2020, '4 cilindros', 85674000);
+        //Se imprime en la consola un objeto que contiene la información actual de automovil2
+        console.log({ automovil2 });
 
-            console.log({automovil3});
+        //Se crea una nueva instancia de la clase Automovil con diferentes valores
+        let automovil3 = new Automovil('Toyota', 'SUV Familiar', 2020, '4 cilindros', 85674000);
 
-            Automovil.prototype.informacionVehiculo = function( ){
-                console.log(`Este automóvil tiene la siguiente información:\n` + `Es de la marca ${this.marca}\n` +
+        //Se imprime en la consola un objeto que contiene la información actual de automovil3
+        console.log({ automovil3 });
+
+        //Se crea un prototipo de la clase Automovil llamado informacionVehiculo que contiene una función sin parámetros
+        Automovil.prototype.informacionVehiculo = function () {
+            //Se imprime en la consola la información del automóvil
+            console.log(`Este automóvil tiene la siguiente información:\n` + `Es de la marca ${this.marca}\n` +
                 `De la línea ${this.linea}\n` + `Modelo ${this.modelo}\n` + `Tiene un cilindraje de ${this.cilindraje}\n`
                 + `Con un precio de ${this.precio}`);
-                }
-            
-            Automovil.prototype.revisionTecnicoMecanica = function( ){
-                const anioActual = new Date( ).getFullYear( );
-                const antiguedad = anioActual - this.modelo;
-            
-                if(antiguedad > 5){
-                    console.log(`El auto de la marca ${this.marca} tiene ${antiguedad} años, por lo que debe pasar a revisión tecnico mecánica`)
-                } else{
-                    console.log(`El auto de la marca ${this.marca} tiene ${antiguedad} años, por lo que no debe pasar a revisión tecnico mecánica`)
-                }
+        }
+
+        //Se crea un prototipo de la clase Automovil llamado revisionTecnicoMecanica que contiene una función sin parámetros
+        Automovil.prototype.revisionTecnicoMecanica = function () {
+
+            //Se declara una variable constante llamada anioActual que almacena el resultado de obtener el año actual
+            const anioActual = new Date().getFullYear();
+            /*Se declara una variable constante llamada antiguedad que almacena el resultado de la resta de 
+            anioActual con el año asignado al atributo modelo*/
+            const antiguedad = anioActual - this.modelo;
+
+            //Se usa un condicional if que tiene como condición que si la antiguedad es mayor a 5,
+            if (antiguedad > 5) {
+                //Se imprime en la consola un mensaje indicando que se debe pasar a revisión tecnico mecánica
+                console.log(`El auto de la marca ${this.marca} tiene ${antiguedad} años, por lo que debe pasar a revisión tecnico mecánica`)
+            } else {
+                //Si no supera los 5 años, se imprime un mensaje indicando que no se tiene que pasar a revisión
+                console.log(`El auto de la marca ${this.marca} tiene ${antiguedad} años, por lo que no debe pasar a revisión tecnico mecánica`)
             }
+        }
 
-            Automovil.prototype.nivelGasolina = function( ){
-                const nivelGasolina = Math.floor(Math.random()*101);
+         //Se crea un prototipo de la clase Automovil llamado nivelGasolina que contiene una función sin parámetros
+        Automovil.prototype.nivelGasolina = function () {
 
-                if(nivelGasolina >= 0 || nivelGasolina <= 100){
-                    console.log(`El nivel de combustible del auto ${this.marca} es de ${nivelGasolina}%`)
-                } 
+            /*Se declara una variable constante llamada nivel de gasolina que almacenara un número aleatorio de
+            0 a 100*/
+            const nivelGasolina = Math.floor(Math.random() * 101);
+
+            //Si el nivel de gasolina es mayor o igual a cero y menor o igual a 100
+            if (nivelGasolina >= 0 || nivelGasolina <= 100) {
+                //Se imprime un mensaje en la consola indicando el nivel de gasolina del automóvil
+                console.log(`El nivel de combustible del auto ${this.marca} es de ${nivelGasolina}%`)
             }
+        }
 
-            console.log('Auto 1');
-            automovil1.informacionVehiculo( );
-            automovil1.revisionTecnicoMecanica( );
-            automovil1.nivelGasolina( );
+        //Se imprime en la consola un mensaje
+        console.log('Auto 1');
+        //Se llama a los métodos
+        automovil1.informacionVehiculo();
+        automovil1.revisionTecnicoMecanica();
+        automovil1.nivelGasolina();
 
-            console.log('Auto 2');
-            automovil2.informacionVehiculo( );
-            automovil2.revisionTecnicoMecanica( );
-            automovil2.nivelGasolina( );
-            
-            console.log('Auto 3');
-            automovil3.informacionVehiculo( );
-            automovil3.revisionTecnicoMecanica( );
-            automovil3.nivelGasolina( );
+        //Se imprime en la consola un mensaje
+        console.log('Auto 2');
+        //Se llama a los métodos
+        automovil2.informacionVehiculo();
+        automovil2.revisionTecnicoMecanica();
+        automovil2.nivelGasolina();
 
-            function ModeloSedan(marca, linea, modelo, cilindraje,precio, pasajeros, caja, cinturones){
-                this.super = Automovil;
-                this.super(marca, linea, modelo, cilindraje,precio);
-                this.pasajeros = pasajeros;
-                this.caja = caja;
-                this.cinturones = cinturones;
-            
-            }
+        //Se imprime en la consola un mensaje
+        console.log('Auto 3');
+        //Se llama a los métodos
+        automovil3.informacionVehiculo();
+        automovil3.revisionTecnicoMecanica();
+        automovil3.nivelGasolina();
 
-            ModeloSedan.prototype = new Automovil();
-            ModeloSedan.prototype.constructor = Automovil;
+        /*Se define una nueva función constructora ModeloSedan que hereda propiedades de la clase Automovil
+        usando this.super. Se agregan propiedades adicionales pasajeros, caja, cinturones*/
+        function ModeloSedan(marca, linea, modelo, cilindraje, precio, pasajeros, caja, cinturones) {
+            this.super = Automovil;
+            this.super(marca, linea, modelo, cilindraje, precio);
+            this.pasajeros = pasajeros;
+            this.caja = caja;
+            this.cinturones = cinturones;
+        }
 
-            let automovil4 = new ModeloSedan('Toyota', 'Toyota corolla', 2019, '6 cilindros', 69543500, 5, 'automática', 4);
+        //Se establece el prototipo de la clase ModeloSedan como una nueva instancia de la clase Automovil
+        ModeloSedan.prototype = new Automovil();
+        //Se establece el constructor del prototipo de ModeloSedan como la función constructora de Automovil.
+        ModeloSedan.prototype.constructor = Automovil;
 
-            console.log({automovil4});
+        //Se crea una nueva instancia de la clase ModeloSedan con diferentes valores
+        let automovil4 = new ModeloSedan('Toyota', 'Toyota corolla', 2019, '6 cilindros', 69543500, 5, 'automática', 4);
 
-            ModeloSedan.prototype.informacionVehiculo = function( ){
-                console.log(`Este automovil tiene la siguiente información:\n` + `Es de la marca ${this.marca}\n` +
+        //Se imprime en la consola un objeto que contiene la información actual de automovil4
+        console.log({ automovil4 });
+
+        //Se redefine el método informacionVehiculo en el prototipo de la clase ModeloSedan.
+        ModeloSedan.prototype.informacionVehiculo = function () {
+            console.log(`Este automovil tiene la siguiente información:\n` + `Es de la marca ${this.marca}\n` +
                 `De la línea ${this.linea}\n` + `Modelo ${this.modelo}\n` + `Tiene un cilindraje de ${this.cilindraje}\n`
                 + `Con un precio de ${this.precio}\n` + `El número de pasajeros es de ${this.pasajeros}\n` + `El tipo de caja es: ${this.caja}`);
-            }
+        }
 
-            ModeloSedan.prototype.numeroCinturones = function(){
-                console.log(`El número de cinturones de seguridad que tiene este auto es ${this.cinturones}.`);
-            }
+        //Se crea un prototipo de la clase ModeloSedan llamado numeroCinturones que contiene una función sin parámetros
+        ModeloSedan.prototype.numeroCinturones = function () {
+            //Se imprime un mensaje en la consola indicando el número de cinturones que tiene el auto
+            console.log(`El número de cinturones de seguridad que tiene este auto es ${this.cinturones}.`);
+        }
 
-            console.log('Auto 4');
+        //Se imprime en la consola un mensaje
+        console.log('Auto 4');
+        //Se llama a los métodos
+        automovil4.informacionVehiculo();
+        automovil4.numeroCinturones();
+    </script>
+</body>
 
-            automovil4.informacionVehiculo();
-            automovil4.numeroCinturones();
-            </script>
-        </body>
-        </html>
+</html>
