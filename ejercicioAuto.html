@@ -138,7 +138,8 @@
                 aprendiz2.estudiar( );
                 aprendiz2.trabajar( ); */
 
-        //Se define una función constructora llamada Automovil que toma cinco parámetros marca, linea, modelo, cilindraje, precio.
+        /*Se define una función constructora llamada Automovil que toma cinco parámetros marca, linea, modelo,
+        cilindraje, precio.*/
         function Automovil(marca, linea, modelo, cilindraje, precio) {
             //Los parámetros se asignan como propiedades al objeto creado
             this.marca = marca;
@@ -200,7 +201,7 @@
             0 a 100*/
             const nivelGasolina = Math.floor(Math.random() * 101);
 
-            //Si el nivel de gasolina es mayor o igual a cero y menor o igual a 100
+            //Se usa un if y se le da la siguiente condición: si el nivel de gasolina es mayor o igual a cero y menor o igual a 100
             if (nivelGasolina >= 0 || nivelGasolina <= 100) {
                 //Se imprime un mensaje en la consola indicando el nivel de gasolina del automóvil
                 console.log(`El nivel de combustible del auto ${this.marca} es de ${nivelGasolina}%`)
@@ -231,6 +232,8 @@
         /*Se define una nueva función constructora ModeloSedan que hereda propiedades de la clase Automovil
         usando this.super. Se agregan propiedades adicionales pasajeros, caja, cinturones*/
         function ModeloSedan(marca, linea, modelo, cilindraje, precio, pasajeros, caja, cinturones) {
+            /*La palabra clave super se utiliza comúnmente en programación orientada a objetos para referirse a 
+            la clase padre o superclase.*/
             this.super = Automovil;
             this.super(marca, linea, modelo, cilindraje, precio);
             this.pasajeros = pasajeros;

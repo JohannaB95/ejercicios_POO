@@ -55,7 +55,7 @@
         PlatoRestaurante.prototype.descuentoPedido = function () {
 
             //Si la cantidad es mayor a 2 y precio es mayor o igual a 50000
-            if (this.cantidad > 2 || this.precio >= 50000) {
+            if (this.cantidad > 2 && this.precio >= 50000) {
                 //Se declara una variable llamada descuento que se inicializa en 10
                 let descuento = 10;
                 //Se declara una variable llamada total1 que almacena el valor de la multiplicación entre precio y cantidad
